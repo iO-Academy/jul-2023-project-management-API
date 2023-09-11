@@ -2,7 +2,7 @@
 
 namespace ProjectManager\Entities;
 
-class ProjectEntity implements JsonSerializable {
+class ProjectEntity implements \JsonSerializable {
 
     private int $id;
     private string $name;
