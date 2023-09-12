@@ -1,5 +1,6 @@
 <?php
 namespace ProjectManager\Services;
+
 class ConvertToJsonService
 {
 
@@ -18,6 +19,9 @@ class ConvertToJsonService
 
     public static function convert(array $data, int $message)
     {
+        if (!array_key_exists($message, self::MESSAGES)) {
+            throw new \Exception('Wrong message key inserted');
+        }
         self::$successResponse['message'] = self::MESSAGES[$message];
         self::$successResponse['data'] = $data;
         $json = json_encode(self::$successResponse);
