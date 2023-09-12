@@ -2,7 +2,9 @@
 
 namespace Services;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 class ConvertToJsonServiceTest extends TestCase
 {
