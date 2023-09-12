@@ -9,6 +9,17 @@ class DateServiceTest extends TestCase
 {
     public function testIsOverdueTrue()
     {
-        $date = ''
+        $date = '01/01/1970';
+        $result = DateService::isOverdue($date);
+
+        $this->assertSame(true, $result);
+    }
+
+    public function testIsOverdueFalse()
+    {
+        $date = '01/01/3000';
+        $result = DateService::isOverdue($date);
+
+        $this->assertSame(false, $result);
     }
 }

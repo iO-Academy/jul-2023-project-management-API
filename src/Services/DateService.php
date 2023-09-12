@@ -10,11 +10,6 @@ class DateService
         $currentDate = new \DateTime();
 
         $diff = $deadline->diff($currentDate);
-
-        if ($diff->invert) {
-            return true;
-        } else {
-            return false;
-        }
+        return !$diff->invert;
     }
 }
