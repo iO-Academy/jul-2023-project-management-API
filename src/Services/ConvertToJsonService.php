@@ -13,22 +13,20 @@ class ConvertToJsonService
     ];
     private const UNEXPECTED_ERROR_RESPONSE = [
         "message" => "Unexpected error",
-        "data" => [],
-        JSON_UNESCAPED_UNICODE
+        "data" => []
     ];
 
-    public static function convert( $data, int $message)
+    public static function convert(array $data, int $message)
     {
         self::$successResponse['message'] = self::MESSAGES[$message];
         self::$successResponse['data'] = $data;
+        $json = json_encode(self::$successResponse);
 
-        $json = json_encode(self::$successResponse, flags: JSON_THROW_ON_ERROR);
-        if ($json) {
-            http_response_code(200) === json_last_error();
-
+        if ($json){
+            http_response_code(200);
             return $json;
         } else {
-//            http_response_code(500);
+            http_response_code(500);
             return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
         }
     }
