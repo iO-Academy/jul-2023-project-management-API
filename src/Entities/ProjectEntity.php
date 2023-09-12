@@ -28,20 +28,12 @@ class ProjectEntity implements \JsonSerializable {
 
     public function getDeadline(): ?string
     {
-        if ($this->deadline) {
-            return DateService::convertToUkFormat($this->deadline);
-        } else {
-            return null;
-        }
+        return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;
     }
 
     private function getOverdue(): ?bool
     {
-        if ($this->deadline) {
-            return DateService::isOverdue($this->deadline);
-        } else {
-            return null;
-        }
+        return $this->deadline ? DateService::isOverdue($this->deadline) : null;
     }
 
 

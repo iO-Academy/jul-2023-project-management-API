@@ -11,12 +11,12 @@ class ConvertToJsonService
     private const SUCCESS_MESSAGES = [
         self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects'
     ];
-    private const UNEXPECTED_ERROR_RESPONSE = [
+    public const UNEXPECTED_ERROR_RESPONSE = [
         "message" => "Unexpected error",
         "data" => []
     ];
 
-    public static function convert(array $data, int $message)
+    public static function convert(array $data, int $message): string
     {
         if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
             throw new \Exception('Wrong message key inserted');
@@ -27,10 +27,10 @@ class ConvertToJsonService
 
         if ($json){
             http_response_code(200);
-            return $json;
         } else {
             http_response_code(500);
-            return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
+            $json = json_encode(self::UNEXPECTED_ERROR_RESPONSE);
         }
+        return $json;
     }
 }
