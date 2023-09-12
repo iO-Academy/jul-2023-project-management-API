@@ -2,6 +2,8 @@
 
 namespace ProjectManager\Entities;
 
+use ProjectManager\Services\DateService;
+
 class ProjectEntity implements JsonSerializable {
 
     private int $id;
@@ -35,7 +37,8 @@ class ProjectEntity implements JsonSerializable {
             "id" => $this->id,
             "name" => $this->name,
             "client_id" => $this->client_id,
-            "deadline" => $this->deadline
+            "deadline" => $this->deadline,
+            "overdue" => DateService::isOverdue($this->deadline)
         ];
     }
 }
