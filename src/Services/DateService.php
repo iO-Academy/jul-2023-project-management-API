@@ -6,10 +6,9 @@ class DateService
 {
     public static function isOverdue(string $date): bool
     {
-        $deadline = new \DateTime($date);
-        $currentDate = new \DateTime();
-
-        $diff = $deadline->diff($currentDate);
-        return !$diff->invert;
+        $deadline = new \DateTimeImmutable($date);
+        $currentDate = new \DateTimeImmutable();
+        $dateDifference = $deadline->diff($currentDate);
+        return !$dateDifference->invert;
     }
 }
