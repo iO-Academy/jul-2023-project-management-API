@@ -10,7 +10,7 @@ class DateService
         $dateDifference = $deadline->diff($currentDate);
         return !$dateDifference->invert;
     }
-}
+
     public static function convertToUkFormat(string $unformattedDate): string
     {
         $date = new \DateTimeImmutable($unformattedDate);
