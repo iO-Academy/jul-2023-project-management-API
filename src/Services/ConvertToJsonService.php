@@ -17,6 +17,11 @@ class ConvertToJsonService
         "data" => []
     ];
 
+    public const INVALID_PROJECT_ID_RESPONSE = [
+        "message" => "Invalid project ID",
+        "data" => []
+    ];
+
     public static function convert(array | object $data, int $message)
     {
         if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
@@ -28,10 +33,10 @@ class ConvertToJsonService
 
         if ($json){
             http_response_code(200);
-            return $json;
         } else {
             http_response_code(500);
-            return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
+            $json = json_encode(self::UNEXPECTED_ERROR_RESPONSE);
         }
+        return $json;
     }
 }
