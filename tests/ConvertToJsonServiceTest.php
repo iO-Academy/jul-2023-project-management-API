@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+
 class ConvertToJsonServiceTest extends TestCase
 {
     public  function testConvert_success()
