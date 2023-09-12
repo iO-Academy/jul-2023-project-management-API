@@ -1,7 +1,4 @@
 <?php
-
-namespace Services;
-
 use ProjectManager\Services\DateService;
 use PHPUnit\Framework\TestCase;
 
@@ -23,13 +20,13 @@ class DateServiceTest extends TestCase
 
     public function testIsOverdue_malformed()
     {
-        $this->expectException(\TypeError::class);
+        $this->expectException(TypeError::class);
         DateService::isOverdue([]);
     }
 
     public function testIsOverdue_failure()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         \ProjectManager\Services\DateService::isOverdue('2023-15-03');
     }
 }
