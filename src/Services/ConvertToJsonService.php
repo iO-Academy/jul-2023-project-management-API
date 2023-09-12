@@ -3,7 +3,6 @@ namespace ProjectManager\Services;
 
 class ConvertToJsonService
 {
-
     private static array $successResponse = [
         'message' => '',
         'data' => []
