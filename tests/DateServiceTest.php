@@ -3,22 +3,22 @@ use PHPUnit\Framework\TestCase;
 
 class DateServiceTest extends TestCase
 {
-    public function testConvertToToUkFormat()
+    public function testConvertToUkFormat_success()
     {
-        $example = new \ProjectManager\Services\DateService();
-        $result = $example->convertToToUkFormat('2024-03-08');
+        $unformattedDate = '2024-03-08';
+        $result = \ProjectManager\Services\DateService::convertToUkFormat($unformattedDate);
         $this->assertSame('08/03/2024', $result);
     }
 
-    public function testMalformedConvertToToUkFormat()
+    public function testConvertToUkFormat_malformed()
     {
         $this->expectException(TypeError::class);
-        \ProjectManager\Services\DateService::convertToToUkFormat([]);
+        \ProjectManager\Services\DateService::convertToUkFormat([]);
     }
 
-    public function testFailedConvertToToUkFormat()
+    public function testConvertToUkFormat_failure()
     {
         $this->expectException(Exception::class);
-        \ProjectManager\Services\DateService::convertToToUkFormat('2023-15-03');
+        \ProjectManager\Services\DateService::convertToUkFormat('2023-15-03');
     }
 }
