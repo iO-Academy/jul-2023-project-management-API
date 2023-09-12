@@ -8,9 +8,9 @@ class ConvertToJsonService
         'message' => '',
         'data' => []
     ];
-    public const PROJECTS_URL = 0;
-    private const MESSAGES = [
-        self::PROJECTS_URL => 'Successfully retrieved projects'
+    public const PROJECTS_SUCCESS_MESSAGE = 0;
+    private const SUCCESS_MESSAGES = [
+        self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects'
     ];
     private const UNEXPECTED_ERROR_RESPONSE = [
         "message" => "Unexpected error",
@@ -19,10 +19,10 @@ class ConvertToJsonService
 
     public static function convert(array $data, int $message)
     {
-        if (!array_key_exists($message, self::MESSAGES)) {
+        if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
             throw new \Exception('Wrong message key inserted');
         }
-        self::$successResponse['message'] = self::MESSAGES[$message];
+        self::$successResponse['message'] = self::SUCCESS_MESSAGES[$message];
         self::$successResponse['data'] = $data;
         $json = json_encode(self::$successResponse);
 

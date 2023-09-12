@@ -4,12 +4,12 @@ namespace ProjectManager\Entities;
 
 use ProjectManager\Services\DateService;
 
-class ProjectEntity implements JsonSerializable {
+class ProjectEntity implements \JsonSerializable {
 
     private int $id;
     private string $name;
     private int $client_id;
-    private string $deadline;
+    private ?string $deadline;
 
     public function getId(): int
     {
@@ -26,10 +26,24 @@ class ProjectEntity implements JsonSerializable {
         return $this->client_id;
     }
 
-    public function getDeadline(): string
+    public function getDeadline(): ?string
     {
-        return $this->deadline;
+        if ($this->deadline) {
+            return DateService::convertToUkFormat($this->deadline);
+        } else {
+            return null;
+        }
     }
+
+    private function getOverdue(): ?bool
+    {
+        if ($this->deadline) {
+            return DateService::isOverdue($this->deadline);
+        } else {
+            return null;
+        }
+    }
+
 
     public function jsonSerialize(): array
     {
@@ -37,8 +51,8 @@ class ProjectEntity implements JsonSerializable {
             "id" => $this->id,
             "name" => $this->name,
             "client_id" => $this->client_id,
-            "deadline" => $this->deadline,
-            "overdue" => DateService::isOverdue($this->deadline)
+            "deadline" => $this->getDeadline(),
+            "overdue" => $this->getOverdue()
         ];
     }
 }
