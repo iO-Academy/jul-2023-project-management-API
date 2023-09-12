@@ -1,5 +1,4 @@
 <?php
-
 namespace ProjectManager\Services;
 
 class DateService
@@ -10,5 +9,11 @@ class DateService
         $currentDate = new \DateTimeImmutable();
         $dateDifference = $deadline->diff($currentDate);
         return !$dateDifference->invert;
+    }
+}
+    public static function convertToUkFormat(string $unformattedDate): string
+    {
+        $date = new \DateTimeImmutable($unformattedDate);
+        return $date->format('d/m/Y');
     }
 }
