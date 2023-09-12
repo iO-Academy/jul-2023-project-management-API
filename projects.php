@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 require 'vendor/autoload.php';
+use \ProjectManager\Services\ConvertToJsonService;
 
-$db = \ProjectManager\Services\DbConnector::connect();
+//$db = \ProjectManager\Services\DbConnector::connect();
 
-\ProjectManager\Services\ConvertToJsonService::convert($data);
+echo ConvertToJsonService::convert(5678, ConvertToJsonService::PROJECTS_URL);
