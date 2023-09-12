@@ -5,4 +5,4 @@ use \ProjectManager\Services\ConvertToJsonService;
 
 //$db = \ProjectManager\Services\DbConnector::connect();
 
-echo ConvertToJsonService::convert([NAN], 1);
+echo ConvertToJsonService::convert([NAN], 0);
