@@ -35,3 +35,9 @@ class ConvertToJsonService
         }
     }
 }
+
+//f  public const PROJECTS_URL = 0;
+//    private const MESSAGES = [
+//        self::PROJECTS_URL => 'Successfully retrieved projects'
+//    ];
+//SO messages are meant to be as an array in order to select the message based on the type of error

@@ -1,9 +1,11 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
 require 'vendor/autoload.php';
 use \ProjectManager\Services\ConvertToJsonService;
 
-echo ConvertToJsonService::convert([NAN], 1);
 $db = \ProjectManager\Services\DbConnector::connect();
-\ProjectManager\Services\ConvertToJsonService::convert($data);
+$data = \ProjectManager\Hydrators\ProjectsHydrator::getProjects($db);
+$jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, ConvertToJsonService::PROJECTS_URL);
 
+echo $jsonData;
