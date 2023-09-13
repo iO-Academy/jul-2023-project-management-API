@@ -47,4 +47,11 @@ class ConvertToJsonServiceTest extends TestCase
         $this->expectException(TypeError::class);
         \ProjectManager\Services\ConvertToJsonService::convert([], '');
     }
+
+    public function testNoTasksAssignedToThatUserErrorResponse_success()
+    {
+        $result = \ProjectManager\Services\ConvertToJsonService::NoTasksAssignedToThatUserErrorResponse();
+        $expected = '{"message":"No tasks assigned to that user for this project","data":[]}';
+        $this->assertSame($expected, $result);
+        $this->assertSame(404, http_response_code());
 }

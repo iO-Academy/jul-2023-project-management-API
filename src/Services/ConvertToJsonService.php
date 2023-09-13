@@ -51,4 +51,10 @@ class ConvertToJsonService
         http_response_code(500);
         return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
     }
+
+    public static function NoTasksAssignedToThatUserErrorResponse(): string
+    {
+        http_response_code(404);
+        return json_encode(self::INVALID_TASK_ASSIGNED_TO_TASK);
+    }
 }
