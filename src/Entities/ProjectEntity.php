@@ -11,39 +11,15 @@ class ProjectEntity implements \JsonSerializable {
     private int $client_id;
     private ?string $deadline;
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getClientId(): int
-    {
-        return $this->client_id;
-    }
-
     public function getDeadline(): ?string
     {
-        if ($this->deadline) {
-            return DateService::convertToUkFormat($this->deadline);
-        } else {
-            return null;
-        }
+        return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;
     }
 
     private function getOverdue(): ?bool
     {
-        if ($this->deadline) {
-            return DateService::isOverdue($this->deadline);
-        } else {
-            return null;
-        }
+        return $this->deadline ? DateService::isOverdue($this->deadline) : null;
     }
-
 
     public function jsonSerialize(): array
     {
