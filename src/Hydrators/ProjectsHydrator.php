@@ -2,7 +2,6 @@
 
 namespace ProjectManager\Hydrators;
 
-use PhpParser\Node\Expr\Array_;
 use ProjectManager\Entities\ProjectEntity;
 
 class ProjectsHydrator {
