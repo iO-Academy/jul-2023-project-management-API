@@ -47,4 +47,12 @@ class ConvertToJsonServiceTest extends TestCase
         $this->expectException(TypeError::class);
         \ProjectManager\Services\ConvertToJsonService::convert([], '');
     }
+
+    public function testInvalidProjectIdResponse_success()
+    {
+        $result = ConvertToJsonService::invalidProjectIdResponse();
+        $expected = '{"message":"Invalid project ID","data":[]}';
+        $this->assertSame($expected, $result);
+        $this->assertSame(400, http_response_code());
+    }
 }

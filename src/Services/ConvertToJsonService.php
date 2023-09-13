@@ -19,7 +19,7 @@ class ConvertToJsonService
         "data" => []
     ];
 
-    public const INVALID_PROJECT_ID_RESPONSE = [
+    private const INVALID_PROJECT_ID_RESPONSE = [
         "message" => "Invalid project ID",
         "data" => []
     ];
@@ -45,5 +45,11 @@ class ConvertToJsonService
     {
         http_response_code(500);
         return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
+    }
+
+    public static function invalidProjectIdResponse(): string
+    {
+        http_response_code(400);
+        return json_encode(self::INVALID_PROJECT_ID_RESPONSE);
     }
 }
