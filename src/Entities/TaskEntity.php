@@ -4,7 +4,7 @@ namespace ProjectManager\Entities;
 
 use ProjectManager\Services\DateService;
 
-class TaskEntity
+class TaskEntity implements \JsonSerializable
 {
     private int $id;
     private int $project_id;
