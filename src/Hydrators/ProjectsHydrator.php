@@ -19,13 +19,17 @@ class ProjectsHydrator {
         $query = $db->prepare('SELECT `id`,`name`,`client_id`,`deadline` FROM `projects` WHERE `id` = ?');
         $query->execute([$projectId]);
         $query->setFetchMode(\PDO::FETCH_CLASS,SpecificProjectEntity::class);
-        return $query->fetch();
+        $projectEntity = $query->fetch();
+        return self::getUsersByProjectId($db, $projectId, $projectEntity);
 
     }
-    private static function getUsersByProjectId(\PDO $db, int $projectId)
+    private static function getUsersByProjectId(\PDO $db, int $projectId, SpecificProjectEntity $projectEntity)
     {
         $query = $db->prepare('SELECT `id`,`name`,`avatar`,`role` FROM `projects` WHERE `id` = ?');
         $query->execute([$projectId]);
         $query->setFetchMode(\PDO::FETCH_CLASS,UserEntity::class);
+        $users = $query->fetchAll();
+        $projectEntity->setUsers($users);
+        return $projectEntity;
     }
 }

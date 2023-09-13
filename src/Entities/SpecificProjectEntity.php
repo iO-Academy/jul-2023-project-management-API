@@ -19,10 +19,19 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
         return $this->client_logo;
     }
 
-    private function setUsers(): array
+    public function setUsers(array $users)
     {
-        return $this->users;
+        foreach ($users as $user)
+        {
+            if($user instanceof UserEntity) {
+                $this->users = $users;
+            } else {
+                throw new \Exception ('Array contents are not correct');
+            }
+        }
+        $this->users = $users;
     }
+
     public function jsonSerialize(): array
     {
         return [

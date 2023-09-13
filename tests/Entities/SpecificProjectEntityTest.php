@@ -4,7 +4,7 @@ namespace Entities;
 
 use PHPUnit\Framework\TestCase;
 
-class UserEntityTest extends TestCase
+class SpecificProjectEntityTest extends TestCase
 {
     public function testGetClientName()
     {
