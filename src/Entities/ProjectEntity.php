@@ -6,9 +6,9 @@ use ProjectManager\Services\DateService;
 
 class ProjectEntity implements \JsonSerializable {
 
-    private int $id;
-    private string $name;
-    private int $client_id;
+    protected int $id;
+    protected string $name;
+    protected int $client_id;
     private ?string $deadline;
 
     public function getId(): int
@@ -35,7 +35,7 @@ class ProjectEntity implements \JsonSerializable {
         }
     }
 
-    private function getOverdue(): ?bool
+    protected function getOverdue(): ?bool
     {
         if ($this->deadline) {
             return DateService::isOverdue($this->deadline);
