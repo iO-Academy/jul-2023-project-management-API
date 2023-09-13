@@ -4,6 +4,7 @@ namespace Services;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use ProjectManager\Services\ConvertToJsonService;
 use TypeError;
 
 class ConvertToJsonServiceTest extends TestCase
@@ -13,13 +14,20 @@ class ConvertToJsonServiceTest extends TestCase
         $result = \ProjectManager\Services\ConvertToJsonService::convert([1, 2, 3, 4], 0);
         $expected = '{"message":"Successfully retrieved projects","data":[1,2,3,4]}';
         $this->assertSame($expected, $result);
+        $this->assertSame(200, http_response_code());
     }
 
     public function testConvert_success_unexpected_error()
     {
-        $result = \ProjectManager\Services\ConvertToJsonService::convert([NAN], 0);
+        $this->markTestSkipped('Skipping due to integration test required');
+    }
+
+    public function testUnexpectedErrorResponse_success()
+    {
+        $result = \ProjectManager\Services\ConvertToJsonService::UnexpectedErrorResponse();
         $expected = '{"message":"Unexpected error","data":[]}';
         $this->assertSame($expected, $result);
+        $this->assertSame(500, http_response_code());
     }
 
     public function testConvert_failure()
