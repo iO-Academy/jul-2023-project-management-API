@@ -7,7 +7,7 @@ class ConvertToJsonService
         'message' => '',
         'data' => []
     ];
-    public const PROJECTS_SUCCESS_MESSAGE = 0; //this is the key for the array?
+    public const PROJECTS_SUCCESS_MESSAGE = 0;
 
     public const PROJECT_SUCCESS_MESSAGE = 1;
     private const SUCCESS_MESSAGES = [

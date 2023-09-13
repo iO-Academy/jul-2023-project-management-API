@@ -9,5 +9,5 @@ try {
     $data = \ProjectManager\Hydrators\ProjectsHydrator::getProjects($db);
     echo \ProjectManager\Services\ConvertToJsonService::convert($data,ConvertToJsonService::PROJECTS_SUCCESS_MESSAGE);
 } catch (Exception $e) {
-    echo ConvertToJsonService::unexpectedErrorResponse();
+    echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
 }

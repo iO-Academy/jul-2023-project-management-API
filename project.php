@@ -13,8 +13,6 @@ try {
         $jsonData = json_encode(\ProjectManager\Services\ConvertToJsonService::INVALID_PROJECT_ID_RESPONSE);
     }
     echo $jsonData;
-} catch {
-    http_response_code(500);
-    echo json_encode(self::UNEXPECTED_ERROR_RESPONSE);
-    exit;
+} catch (Exception $e) {
+    echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
 }
