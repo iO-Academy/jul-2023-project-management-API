@@ -9,8 +9,7 @@ try {
     if ($_GET['id']) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
     } else {
-        http_response_code(400);
-        $jsonData = json_encode(\ProjectManager\Services\ConvertToJsonService::INVALID_PROJECT_ID_RESPONSE);
+        $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
     }
     echo $jsonData;
 } catch (Exception $e) {
