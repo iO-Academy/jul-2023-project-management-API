@@ -3,6 +3,7 @@
 namespace ProjectManager\Hydrators;
 
 use ProjectManager\Entities\ProjectEntity;
+use function PHPUnit\Framework\throwException;
 
 class ProjectsHydrator {
     public static function getProjects(\PDO $db)
