@@ -6,7 +6,7 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
 {
     private string $client_name;
     private string $client_logo;
-    private array $users;
+    private array $users = [];
 
 
     public function getClientName(): string
@@ -19,17 +19,17 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
         return $this->client_logo;
     }
 
-    public function setUsers(array $users)
+    public function setUsers(array $users): bool
     {
         foreach ($users as $user)
         {
             if($user instanceof UserEntity) {
-                $this->users = $users;
+                $this->users[] = $user;
             } else {
                 throw new \Exception ('Array contents are not correct');
             }
         }
-        $this->users = $users;
+        return true;
     }
 
     public function jsonSerialize(): array
