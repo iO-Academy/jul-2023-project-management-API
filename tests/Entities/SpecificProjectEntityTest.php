@@ -17,14 +17,14 @@ class SpecificProjectEntityTest extends TestCase
         $this->assertSame(true, $result);
     }
 
-    public function testSetUsersAllWrongData_failure()
+    public function testSetUsers_failure_noUserEntitiesGiven()
     {
         $this->expectException(\Exception::class);
         $specificProjectEntity = new SpecificProjectEntity();
         $specificProjectEntity->setUsers([3, 6, 9]);
     }
 
-    public function testSetUsersSomeWrongData_failure()
+    public function testSetUsers_failure_someUserEntitiesGiven()
     {
         $mockUserEntity1 = $this->createMock(\ProjectManager\Entities\UserEntity::class);
         $this->expectException(\Exception::class);
