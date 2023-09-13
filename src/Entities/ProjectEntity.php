@@ -6,17 +6,22 @@ use ProjectManager\Services\DateService;
 
 class ProjectEntity implements \JsonSerializable {
 
-    private int $id;
-    private string $name;
-    private int $client_id;
+    protected int $id;
+    protected string $name;
+    protected int $client_id;
     private ?string $deadline;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
     public function getDeadline(): ?string
     {
         return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;
     }
 
-    private function getOverdue(): ?bool
+    protected function getOverdue(): ?bool
     {
         return $this->deadline ? DateService::isOverdue($this->deadline) : null;
     }
