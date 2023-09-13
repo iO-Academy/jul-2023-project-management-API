@@ -7,16 +7,6 @@ use ProjectManager\Entities\SpecificProjectEntity;
 
 class SpecificProjectEntityTest extends TestCase
 {
-    public function testGetClientName()
-    {
-        $this->markTestSkipped('Skipping due to no logic');
-    }
-
-    public function testGetClientLogo()
-    {
-        $this->markTestSkipped('Skipping due to no logic');
-    }
-
     public function testSetUsers_success()
     {
         $mockUserEntity1 = $this->createMock(\ProjectManager\Entities\UserEntity::class);
