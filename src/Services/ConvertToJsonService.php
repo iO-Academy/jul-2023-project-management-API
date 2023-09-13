@@ -24,6 +24,11 @@ class ConvertToJsonService
         "data" => []
     ];
 
+    public const INVALID_TASK_ASSIGNED_TO_TASK = [
+        "message" => 'No tasks assigned to that user for this project',
+        "data" => []
+    ];
+
     public static function convert(array $data, int $message): string
     {
         if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
