@@ -16,3 +16,4 @@ try {
 } catch (Exception $e) {
     echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
 }
+
