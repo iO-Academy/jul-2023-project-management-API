@@ -6,15 +6,9 @@ use \ProjectManager\Services\ConvertToJsonService;
 
 try {
     $db = \ProjectManager\Services\DbConnector::connect();
-} catch (Exception $e) {
-    http_response_code(500);
-    json_encode(ConvertToJsonService::UNEXPECTED_ERROR_RESPONSE);
-}
-try {
     $data = \ProjectManager\Hydrators\ProjectsHydrator::getProjects($db);
+    echo \ProjectManager\Services\ConvertToJsonService::convert($data,ConvertToJsonService::PROJECTS_SUCCESS_MESSAGE);
 } catch (Exception $e) {
-    http_response_code(500);
-    json_encode(ConvertToJsonService::UNEXPECTED_ERROR_RESPONSE);
+    echo ConvertToJsonService::unexpectedErrorResponse();
 }
-echo $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data,ConvertToJsonService::PROJECTS_SUCCESS_MESSAGE);
 

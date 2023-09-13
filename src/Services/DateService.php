@@ -3,7 +3,7 @@ namespace ProjectManager\Services;
 
 class DateService
 {
-    private const DATEFORMAT ='d/m/Y';
+    private const UKDATEFORMAT ='d/m/Y';
     public static function isOverdue(string $date): bool
     {
         $deadline = new \DateTimeImmutable($date);
@@ -14,6 +14,6 @@ class DateService
     public static function convertToUkFormat(string $unformattedDate): string
     {
         $date = new \DateTimeImmutable($unformattedDate);
-        return $date->format(DateService::DATEFORMAT);
+        return $date->format(DateService::UKDATEFORMAT);
     }
 }

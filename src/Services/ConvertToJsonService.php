@@ -11,7 +11,7 @@ class ConvertToJsonService
     private const SUCCESS_MESSAGES = [
         self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects'
     ];
-    public const UNEXPECTED_ERROR_RESPONSE = [
+    private const UNEXPECTED_ERROR_RESPONSE = [
         "message" => "Unexpected error",
         "data" => []
     ];
@@ -28,9 +28,14 @@ class ConvertToJsonService
         if ($json){
             http_response_code(200);
         } else {
-            http_response_code(500);
-            $json = json_encode(self::UNEXPECTED_ERROR_RESPONSE);
+            $json = self::unexpectedErrorResponse();
         }
         return $json;
+    }
+
+    public static function unexpectedErrorResponse(): string
+    {
+        http_response_code(500);
+        return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
     }
 }
