@@ -3,12 +3,9 @@
 namespace ProjectManager\Hydrators;
 
 use ProjectManager\Entities\ProjectEntity;
-<<<<<<< HEAD
 use ProjectManager\Entities\SpecificProjectEntity;
 use ProjectManager\Entities\UserEntity;
-=======
 use function PHPUnit\Framework\throwException;
->>>>>>> story2_get_specific_project
 
 class ProjectsHydrator {
     public static function getProjects(\PDO $db)
@@ -18,14 +15,12 @@ class ProjectsHydrator {
         $query->setFetchMode(\PDO::FETCH_CLASS, ProjectEntity::class);
         return $query->fetchAll();
     }
-<<<<<<< HEAD
+
 
     public static function getProject(\PDO $db, int $projectId)
-=======
-    public static function getProject(\PDO $db, ?int $projectId)
->>>>>>> story2_get_specific_project
     {
-        $query = $db->prepare('SELECT `id`,`name`,`client_id`,`deadline` FROM `projects` WHERE `id` = ?');
+        throw new \Exception('foo');
+        $query = $db->prepare('SELECT `projects`.`id`, `projects`.`name`, `projects`.`deadline`, `clients`.`id` AS "client_id", `clients`.`name` AS "client_name", `logo` AS "client_logo" FROM `clients` JOIN `projects` ON `clients`.`id` = `projects`.`client_id` WHERE `projects`.`id` = ?');
         $query->execute([$projectId]);
         $query->setFetchMode(\PDO::FETCH_CLASS,SpecificProjectEntity::class);
         $projectEntity = $query->fetch();
@@ -34,7 +29,7 @@ class ProjectsHydrator {
 
     private static function getUsersByProjectId(\PDO $db, int $projectId, SpecificProjectEntity $projectEntity)
     {
-        $query = $db->prepare('SELECT `id`,`name`,`avatar`,`role` FROM `projects` WHERE `id` = ?');
+        $query = $db->prepare('SELECT `users`.`id`,`name`, `avatar`, `role` FROM `users` JOIN `project_users` ON `users`.`id` = `project_users`.`user_id` WHERE `project_id` = ?');
         $query->execute([$projectId]);
         $query->setFetchMode(\PDO::FETCH_CLASS,UserEntity::class);
         $users = $query->fetchAll();
