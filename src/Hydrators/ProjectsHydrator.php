@@ -3,6 +3,8 @@
 namespace ProjectManager\Hydrators;
 
 use ProjectManager\Entities\ProjectEntity;
+use ProjectManager\Entities\SpecificProjectEntity;
+use ProjectManager\Entities\UserEntity;
 
 class ProjectsHydrator {
     public static function getProjects(\PDO $db)
