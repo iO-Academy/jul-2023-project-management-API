@@ -24,7 +24,7 @@ class ConvertToJsonService
         "data" => []
     ];
 
-    public const INVALID_TASK_ASSIGNED_TO_TASK = [
+    public const INVALID_TASK_ASSIGNED_TO_USER = [
         "message" => 'No tasks assigned to that user for this project',
         "data" => []
     ];
@@ -52,12 +52,12 @@ class ConvertToJsonService
         return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
     }
 
-
     public static function NoTasksAssignedToThatUserErrorResponse(): string
     {
         http_response_code(404);
-        return json_encode(self::INVALID_TASK_ASSIGNED_TO_TASK);
+        return json_encode(self::INVALID_TASK_ASSIGNED_TO_USER);
 }
+
     public static function invalidProjectIdResponse(): string
     {
         http_response_code(400);

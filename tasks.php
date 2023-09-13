@@ -12,8 +12,7 @@ $data = \ProjectManager\Hydrators\TasksHydrator::getTasksByUserAndProjectId($db)
             \ProjectManager\Services\ConvertToJsonService::NoTasksAssignedToThatUserErrorResponse();
         }
     } else {
-        http_response_code(400);
-        $jsonData = json_encode(\ProjectManager\Services\ConvertToJsonService::INVALID_TASK_ASSIGNED_TO_TASK);
+        \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
     }
         echo $jsonData;
     } catch (Exception $e) {
