@@ -9,11 +9,6 @@ class UserEntity implements \JsonSerializable
     private string $avatar;
     private string $role;
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function jsonSerialize(): array
     {
         return [

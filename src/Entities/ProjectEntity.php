@@ -11,11 +11,6 @@ class ProjectEntity implements \JsonSerializable {
     protected int $client_id;
     protected ?string $deadline;
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function getDeadline(): ?string
     {
         return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;

@@ -6,10 +6,10 @@ require 'vendor/autoload.php';
 try {
     $db = \ProjectManager\Services\DbConnector::connect();
     $projectId = $_GET['id'];
-    $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $projectId);
-    if (isset($projectId)) {
+    if (isset($projectId) && is_numeric($projectId)) {
+        $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $projectId);
         $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
-    } else if (gettype($projectId) === "integer") {
+    } else {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
     }
     echo $jsonData;
