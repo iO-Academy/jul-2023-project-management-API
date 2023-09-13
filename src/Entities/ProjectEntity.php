@@ -11,14 +11,11 @@ class ProjectEntity implements \JsonSerializable {
     protected int $client_id;
     private ?string $deadline;
 
-<<<<<<< HEAD
     public function getName(): string
     {
         return $this->name;
     }
 
-=======
->>>>>>> story2_get_specific_project
     public function getDeadline(): ?string
     {
         return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;
