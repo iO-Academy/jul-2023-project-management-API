@@ -3,13 +3,18 @@ header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
 require 'vendor/autoload.php';
 
-$db = \ProjectManager\Services\DbConnector::connect();
-$projectId = 3; //this is just for testing code during S2T4
-$data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $projectId);
-if ($projectId) {
-    $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECTS_SUCCESS_MESSAGE);
-} else {
-    http_response_code(400);
-    $jsonData = json_encode(\ProjectManager\Services\ConvertToJsonService::INVALID_PROJECT_ID_RESPONSE);
+try {
+    $db = \ProjectManager\Services\DbConnector::connect();
+    $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $_GET['id']);
+    if ($_GET['id']) {
+        $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
+    } else {
+        http_response_code(400);
+        $jsonData = json_encode(\ProjectManager\Services\ConvertToJsonService::INVALID_PROJECT_ID_RESPONSE);
+    }
+    echo $jsonData;
+} catch {
+    http_response_code(500);
+    echo json_encode(self::UNEXPECTED_ERROR_RESPONSE);
+    exit;
 }
-echo $jsonData;

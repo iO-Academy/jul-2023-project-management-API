@@ -8,9 +8,12 @@ class ConvertToJsonService
         'message' => '',
         'data' => []
     ];
-    public const PROJECTS_SUCCESS_MESSAGE = 0;
+    public const PROJECTS_SUCCESS_MESSAGE = 0; //this is the key for the array?
+
+    public const PROJECT_SUCCESS_MESSAGE = 1;
     private const SUCCESS_MESSAGES = [
-        self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects'
+        self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects',
+        self::PROJECT_SUCCESS_MESSAGE => 'Successfully retrieved project'
     ];
     private const UNEXPECTED_ERROR_RESPONSE = [
         "message" => "Unexpected error",
