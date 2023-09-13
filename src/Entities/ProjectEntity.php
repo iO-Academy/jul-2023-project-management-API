@@ -11,19 +11,9 @@ class ProjectEntity implements \JsonSerializable {
     protected int $client_id;
     private ?string $deadline;
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getClientId(): int
-    {
-        return $this->client_id;
     }
 
     public function getDeadline(): ?string
@@ -43,7 +33,6 @@ class ProjectEntity implements \JsonSerializable {
             return null;
         }
     }
-
 
     public function jsonSerialize(): array
     {

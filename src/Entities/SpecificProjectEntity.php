@@ -8,17 +8,6 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
     private string $client_logo;
     private array $users = [];
 
-
-    public function getClientName(): string
-    {
-        return $this->client_name;
-    }
-
-    public function getClientLogo(): string
-    {
-        return $this->client_logo;
-    }
-
     public function setUsers(array $users): bool
     {
         foreach ($users as $user)
