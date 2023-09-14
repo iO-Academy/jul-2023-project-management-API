@@ -39,7 +39,8 @@ class ConvertToJsonService
         "data" => []
     ];
 
-    public static function convert(array $data, int $message): string
+
+    public static function convert(array | object $data, int $message): string
     {
         if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
             throw new \Exception('Wrong message key inserted');
