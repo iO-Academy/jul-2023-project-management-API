@@ -5,25 +5,16 @@ require 'vendor/autoload.php';
 
 try {
     $db = \ProjectManager\Services\DbConnector::connect();
-    $projectId = $_GET['id'];
-        if (isset($projectId) && is_numeric($projectId)) {
-            try{
-                $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $projectId);
-                $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
-                echo $jsonData;
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            try {
+                $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $_GET['id']);
+                echo \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
             } catch (Throwable $e) {
-                $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-                echo $jsonData;
+                echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
             }
+        } else {
+            echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
         }
-//        else if (!is_numeric([$projectId]) || [$projectId] < 0) {
-//            $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-//            echo $jsonData;
-//        }
-        else {
-        $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-        }
-        echo $jsonData;
     }
  catch (Exception $e) {
     echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
