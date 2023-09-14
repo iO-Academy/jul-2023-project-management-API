@@ -9,12 +9,7 @@ class ProjectEntity implements \JsonSerializable {
     protected int $id;
     protected string $name;
     protected int $client_id;
-    private ?string $deadline;
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
+    protected ?string $deadline;
 
     public function getDeadline(): ?string
     {
