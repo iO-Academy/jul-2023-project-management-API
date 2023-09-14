@@ -5,15 +5,17 @@ require 'vendor/autoload.php';
 
 try {
     $db = \ProjectManager\Services\DbConnector::connect();
-    $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $_GET['id']);
-    if ($_GET['id']) {
-        $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
-    } else {
-        http_response_code(400);
-        $jsonData = json_encode(\ProjectManager\Services\ConvertToJsonService::INVALID_PROJECT_ID_RESPONSE);
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            try {
+                $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $_GET['id']);
+                echo \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
+            } catch (Throwable $e) {
+                echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
+            }
+        } else {
+            echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
+        }
     }
-    echo $jsonData;
-} catch (Exception $e) {
+ catch (Exception $e) {
     echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
 }
-
