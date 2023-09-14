@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 
 //try {
     $db = \ProjectManager\Services\DbConnector::connect();
-    $data = \ProjectManager\Hydrators\TasksHydrator::getTasksByProjectId($db, $_GET['project_id']);
+    $data = \ProjectManager\Hydrators\TasksHydrator::getTasksByUserAndProjectId($db, $_GET['project_id'], $_GET['user_id']);
 
     $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
     echo $jsonData;
