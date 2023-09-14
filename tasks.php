@@ -15,8 +15,10 @@ try {
                 echo $jsonData;
             }
     } else if ((!$_GET['project_id'] || !ctype_digit($_GET['project_id']) && (!$_GET['user_id'] || !ctype_digit($_GET['user_id'])))) {
-        echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-        echo \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
+        $projectError = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
+        $userError = \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
+        echo $projectError;
+        echo $userError;
     } else if (!$_GET['project_id'] || !ctype_digit($_GET['project_id'])) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
         echo $jsonData;
