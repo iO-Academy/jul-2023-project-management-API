@@ -12,9 +12,9 @@ try {
             } else {
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASKS_SUCCESS_MESSAGE);
             }
-    } else if (!$_GET['project_id'] || !ctype_digit($_GET['project_id'])) {
+    } else if (!isset($_GET['project_id']) || !ctype_digit($_GET['project_id'])) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-    } else if (!$_GET['user_id'] || !ctype_digit($_GET['user_id'])) {
+    } else if (!isset($_GET['user_id']) || !ctype_digit($_GET['user_id'])) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
     }
     echo $jsonData;
