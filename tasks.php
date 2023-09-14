@@ -9,24 +9,18 @@ try {
         $data = \ProjectManager\Hydrators\TasksHydrator::getTasksByUserAndProjectId($db, $_GET['project_id'], $_GET['user_id']);
             if (empty($data)) {
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::noTasksAssignedToUserErrorResponse();
-                echo $jsonData;
             } else {
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
-                echo $jsonData;
             }
     } else if ((!$_GET['project_id'] || !ctype_digit($_GET['project_id']) && (!$_GET['user_id'] || !ctype_digit($_GET['user_id'])))) {
-        $projectError = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-        $userError = \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
-        echo $projectError;
-        echo $userError;
+        echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
+        echo \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
     } else if (!$_GET['project_id'] || !ctype_digit($_GET['project_id'])) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-        echo $jsonData;
     } else if (!$_GET['user_id'] || !ctype_digit($_GET['user_id'])) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
-        echo $jsonData;
     }
-
+    echo $jsonData;
 } catch (Exception $e) {
     echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
 }
