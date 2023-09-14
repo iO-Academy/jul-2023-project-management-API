@@ -24,7 +24,10 @@ class ConvertToJsonServiceTest extends TestCase
         $this->assertSame($expected, $result);
         $this->assertSame(500, http_response_code());
     }
-
+    public function testConvert_success_unexpected_error()
+    {
+        $this->markTestSkipped('Skipping due to integration test required');
+    }
     public function testConvert_failure()
     {
         $this->expectException(Exception::class);

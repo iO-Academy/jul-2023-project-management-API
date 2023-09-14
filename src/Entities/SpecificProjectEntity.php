@@ -10,12 +10,11 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
 
     public function setUsers(array $users): bool
     {
-        foreach ($users as $user)
-        {
+        foreach ($users as $user) {
             if($user instanceof UserEntity) {
                 $this->users[] = $user;
             } else {
-                throw new \Exception ('Array contents are not correct');
+                throw new \Exception ('Array contains non UserEntity value');
             }
         }
         return true;
