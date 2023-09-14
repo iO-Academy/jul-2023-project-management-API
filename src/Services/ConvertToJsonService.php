@@ -11,12 +11,12 @@ class ConvertToJsonService
 
     public const PROJECT_SUCCESS_MESSAGE = 1;
 
-    public const TASK_SUCCESS_MESSAGE = 2;
+    public const TASKS_SUCCESS_MESSAGE = 2;
 
     private const SUCCESS_MESSAGES = [
         self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects',
         self::PROJECT_SUCCESS_MESSAGE => 'Successfully retrieved project',
-        self::TASK_SUCCESS_MESSAGE => 'Successfully retrieved tasks',
+        self::TASKS_SUCCESS_MESSAGE => 'Successfully retrieved tasks',
     ];
 
     private const UNEXPECTED_ERROR_RESPONSE = [
