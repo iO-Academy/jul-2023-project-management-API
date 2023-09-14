@@ -17,7 +17,6 @@ class ProjectsHydrator {
     }
 
     public static function getProject(\PDO $db, int $projectId)
-
     {
         $query = $db->prepare('SELECT `projects`.`id`, `projects`.`name`, `projects`.`deadline`, `clients`.`id` AS "client_id", `clients`.`name` AS "client_name", `logo` AS "client_logo" FROM `clients` JOIN `projects` ON `clients`.`id` = `projects`.`client_id` WHERE `projects`.`id` = ?');
         $query->execute([$projectId]);
