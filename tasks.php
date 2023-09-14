@@ -8,7 +8,7 @@ try {
     if (isset($_GET['project_id']) && ctype_digit($_GET['project_id']) && isset($_GET['user_id']) && ctype_digit($_GET['user_id'])) {
             $data = \ProjectManager\Hydrators\TasksHydrator::getTasksByUserAndProjectId($db, $_GET['project_id'], $_GET['user_id']);
             if (empty($data)) {
-                $jsonData = \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
+                $jsonData = \ProjectManager\Services\ConvertToJsonService::noTasksAssignedToUserErrorResponse();
             } else {
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
             }
@@ -21,28 +21,3 @@ try {
 } catch (Exception $e) {
     echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
