@@ -10,11 +10,8 @@ try {
             if (empty($data)) {
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::noTasksAssignedToUserErrorResponse();
             } else {
-                $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
+                $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASKS_SUCCESS_MESSAGE);
             }
-    } else if ((!$_GET['project_id'] || !ctype_digit($_GET['project_id']) && (!$_GET['user_id'] || !ctype_digit($_GET['user_id'])))) {
-        echo \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-        echo \ProjectManager\Services\ConvertToJsonService::invalidUserIdResponse();
     } else if (!$_GET['project_id'] || !ctype_digit($_GET['project_id'])) {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
     } else if (!$_GET['user_id'] || !ctype_digit($_GET['user_id'])) {
