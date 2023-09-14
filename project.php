@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 
 try {
     $db = \ProjectManager\Services\DbConnector::connect();
-    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
         try {
             $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $_GET['id']);
             $jsonData =  \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
