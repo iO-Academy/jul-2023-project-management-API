@@ -62,54 +62,11 @@ class ConvertToJsonServiceTest extends TestCase
         $this->assertSame(400, http_response_code());
     }
 
-
     public function testInvalidUserIdResponse_success()
     {
         $result = ConvertToJsonService::invalidUserIdResponse();
         $expected = '{"message":"Invalid user ID","data":[]}';
         $this->assertSame($expected, $result);
         $this->assertSame(400, http_response_code());
-    }
-
-    public function testProjectIdOrResponse_Success_Is_Numeric_True()
-    {
-        $result = (!is_numeric(['true']) || ['false'] <= 0);
-        $expected = (!is_numeric(['true']) || ['false'] <= 0);
-        $this->assertTrue($expected, $result);
-    }
-
-    public function testProjectIdOrResponse_Success_Is_Greater_Than_Zero_True()
-    {
-        $result = (!is_numeric(['false']) || ['true'] <= 0);
-        $expected = (!is_numeric(['false']) || ['true'] <= 0);
-        $this->assertTrue($expected, $result);
-    }
-
-    public function testProjectIdOrResponse_Success_Both_True()
-    {
-        $result = (!is_numeric(['true']) || ['true'] <= 0);
-        $expected = (!is_numeric(['true']) || ['true'] <= 0);
-        $this->assertTrue($expected, $result);
-    }
-
-    public function testUserIdOrResponse_Success_Is_Numeric_True()
-    {
-        $result = (!is_numeric(['true']) || ['false'] <= 0);
-        $expected = (!is_numeric(['true']) || ['false'] <= 0);
-        $this->assertTrue($expected, $result);
-    }
-
-    public function testUserIdOrResponse_Success_Is_Greater_Than_Zero_True()
-    {
-        $result = (!is_numeric(['false']) || ['true'] <= 0);
-        $expected = (!is_numeric(['false']) || ['true'] <= 0);
-        $this->assertTrue($expected, $result);
-    }
-
-    public function testUserIdOrResponse_Success_Both_True()
-    {
-        $result = (!is_numeric(['true']) || ['true'] <= 0);
-        $expected = (!is_numeric(['true']) || ['true'] <= 0);
-        $this->assertTrue($expected, $result);
     }
 }
