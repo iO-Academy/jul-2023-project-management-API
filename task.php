@@ -10,7 +10,7 @@ try {
             $data = \ProjectManager\Hydrators\TasksHydrator::getTaskByUserAndProjectId($db, $_GET['id']);
             $jsonData =  \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
         } catch (Throwable $e) {
-            $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();
+//            $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();
         }
     } else {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();

@@ -13,7 +13,7 @@ class TaskEntity implements \JsonSerializable
     protected ?int $estimate;
     protected ?string $deadline;
 
-    private function getDeadline(): ?string
+    protected function getDeadline(): ?string
     {
         return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;
     }
