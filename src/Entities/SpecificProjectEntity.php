@@ -14,7 +14,7 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
             if($user instanceof UserEntity) {
                 $this->users[] = $user;
             } else {
-                throw new \Exception ('Users cannot be accessed');
+                throw new \Exception ('Array contains non UserEntity value');
             }
         }
         return true;
