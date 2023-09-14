@@ -13,12 +13,4 @@ class TasksHydrator
         $query->setFetchMode(\PDO::FETCH_CLASS, TaskEntity::class);
         return $query->fetchAll();
     }
-
-//    public static function getTasksByUserId(\PDO $db, int $userId): array
-//    {
-//        $query = $db->prepare('SELECT `id`, `project_id`, `user_id`, `name`, `estimate`, `deadline` FROM `tasks` WHERE `user_id` = ?');
-//        $query->execute([$userId]);
-//        $query->setFetchMode(\PDO::FETCH_CLASS, TaskEntity::class);
-//        return $query->fetch();
-//    }
 }
