@@ -29,10 +29,9 @@ class SpecificProjectEntity extends ProjectEntity implements \JsonSerializable
             "client_id" => $this->client_id,
             "client_name" => $this->client_name,
             "client_logo" => $this->client_logo,
+            "users" => $this->users,
             "deadline" => $this->getDeadline(),
             "overdue" => $this->getOverdue(),
-            "users" => $this->users
         ];
     }
-
 }
