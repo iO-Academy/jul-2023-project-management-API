@@ -6,11 +6,11 @@ use ProjectManager\Services\DateService;
 
 class TaskEntity implements \JsonSerializable
 {
-    private int $id;
-    private int $project_id;
-    private int $user_id;
-    private string $name;
-    private ?int $estimate;
+    protected int $id;
+    protected int $project_id;
+    protected int $user_id;
+    protected string $name;
+    protected ?int $estimate;
     protected ?string $deadline;
 
     public function getDeadline(): ?string
@@ -18,7 +18,7 @@ class TaskEntity implements \JsonSerializable
         return $this->deadline ? DateService::convertToUkFormat($this->deadline) : null;
     }
 
-    private function getOverdue(): ?bool
+    protected function getOverdue(): ?bool
     {
         return $this->deadline ? DateService::isOverdue($this->deadline) : null;
     }
