@@ -48,7 +48,7 @@ class ConvertToJsonServiceTest extends TestCase
 
     public function testNoTasksAssignedToUserErrorResponse_success()
     {
-        $result = \ProjectManager\Services\ConvertToJsonService::NoTasksAssignedToUserErrorResponse();
+        $result = \ProjectManager\Services\ConvertToJsonService::noTasksAssignedToUserErrorResponse();
         $expected = '{"message":"No tasks assigned to that user for this project","data":[]}';
         $this->assertSame($expected, $result);
         $this->assertSame(404, http_response_code());
