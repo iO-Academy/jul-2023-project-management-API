@@ -10,15 +10,16 @@ try {
             try{
                 $data = \ProjectManager\Hydrators\ProjectsHydrator::getProject($db, $projectId);
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
-            } catch (Exception $e) {
+                echo $jsonData;
+            } catch (Throwable $e) {
                 $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
                 echo $jsonData;
             }
         }
-        else if (!is_numeric([$projectId]) || [$projectId] < 0) {
-            $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
-            echo $jsonData;
-        }
+//        else if (!is_numeric([$projectId]) || [$projectId] < 0) {
+//            $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
+//            echo $jsonData;
+//        }
         else {
         $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidProjectIdResponse();
         }
