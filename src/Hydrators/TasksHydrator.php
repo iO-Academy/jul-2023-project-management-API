@@ -1,6 +1,7 @@
 <?php
 
 namespace ProjectManager\Hydrators;
+use ProjectManager\Entities\TaskEntity;
 
 use ProjectManager\Entities\TaskEntity;
 

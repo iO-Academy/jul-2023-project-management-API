@@ -10,9 +10,13 @@ class ConvertToJsonService
     public const PROJECTS_SUCCESS_MESSAGE = 0;
 
     public const PROJECT_SUCCESS_MESSAGE = 1;
+
+    public const TASK_SUCCESS_MESSAGE = 2;
+
     private const SUCCESS_MESSAGES = [
         self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects',
-        self::PROJECT_SUCCESS_MESSAGE => 'Successfully retrieved project'
+        self::PROJECT_SUCCESS_MESSAGE => 'Successfully retrieved project',
+        self::TASK_SUCCESS_MESSAGE => 'Successfully retrieved tasks',
     ];
     private const UNEXPECTED_ERROR_RESPONSE = [
         "message" => "Unexpected error",
@@ -24,7 +28,17 @@ class ConvertToJsonService
         "data" => []
     ];
 
-    public static function convert(array | object $data, int $message): string
+    public const INVALID_USER_ID_RESPONSE = [
+        "message" => "Invalid user ID",
+        "data" => []
+    ];
+
+    public const INVALID_TASK_ASSIGNED_TO_USER = [
+        "message" => "No tasks assigned to that user for this project",
+        "data" => []
+    ];
+
+    public static function convert(array $data, int $message): string
     {
         if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
             throw new \Exception('Wrong message key inserted');
@@ -47,9 +61,22 @@ class ConvertToJsonService
         return json_encode(self::UNEXPECTED_ERROR_RESPONSE);
     }
 
+    public static function NoTasksAssignedToThatUserErrorResponse(): string
+    {
+        http_response_code(404);
+        return json_encode(self::INVALID_TASK_ASSIGNED_TO_USER);
+}
+
     public static function invalidProjectIdResponse(): string
     {
         http_response_code(400);
         return json_encode(self::INVALID_PROJECT_ID_RESPONSE);
     }
+
+    public static function invalidUserIdResponse(): string
+    {
+        http_response_code(400);
+        return json_encode(self::INVALID_USER_ID_RESPONSE);
+    }
 }
+
