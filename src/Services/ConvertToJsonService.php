@@ -32,12 +32,12 @@ class ConvertToJsonService
         "data" => []
     ];
 
-    public const INVALID_USER_ID_RESPONSE = [
+    private const INVALID_USER_ID_RESPONSE = [
         "message" => "Invalid user ID",
         "data" => []
     ];
 
-    public const NO_TASK_ASSIGNED_TO_USER = [
+    private const NO_TASK_ASSIGNED_TO_USER = [
         "message" => "No tasks assigned to that user for this project",
         "data" => []
     ];
