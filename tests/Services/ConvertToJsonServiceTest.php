@@ -46,10 +46,26 @@ class ConvertToJsonServiceTest extends TestCase
         \ProjectManager\Services\ConvertToJsonService::convert([], '');
     }
 
+    public function testNoTasksAssignedToUserErrorResponse_success()
+    {
+        $result = \ProjectManager\Services\ConvertToJsonService::noTasksAssignedToUserErrorResponse();
+        $expected = '{"message":"No tasks assigned to that user for this project","data":[]}';
+        $this->assertSame($expected, $result);
+        $this->assertSame(404, http_response_code());
+    }
+
     public function testInvalidProjectIdResponse_success()
     {
         $result = ConvertToJsonService::invalidProjectIdResponse();
         $expected = '{"message":"Invalid project ID","data":[]}';
+        $this->assertSame($expected, $result);
+        $this->assertSame(400, http_response_code());
+    }
+
+    public function testInvalidUserIdResponse_success()
+    {
+        $result = ConvertToJsonService::invalidUserIdResponse();
+        $expected = '{"message":"Invalid user ID","data":[]}';
         $this->assertSame($expected, $result);
         $this->assertSame(400, http_response_code());
     }
