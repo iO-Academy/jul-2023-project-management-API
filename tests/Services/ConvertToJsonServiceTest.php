@@ -61,6 +61,13 @@ class ConvertToJsonServiceTest extends TestCase
         $this->assertSame($expected, $result);
         $this->assertSame(400, http_response_code());
     }
+    public function testInvalidTaskIdResponse_success()
+    {
+        $result = ConvertToJsonService::invalidTaskIdResponse();
+        $expected = '{"message":"Invalid task ID","data":[]}';
+        $this->assertSame($expected, $result);
+        $this->assertSame(400, http_response_code());
+    }
 
 
     public function testInvalidUserIdResponse_success()

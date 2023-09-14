@@ -42,6 +42,11 @@ class ConvertToJsonService
         "data" => []
     ];
 
+    public const INVALID_TASK_ID_RESPONSE = [
+        "message" => "Invalid task ID",
+        "data" => []
+    ];
+
     public static function convert(array | object $data, int $message): string
     {
         if (!array_key_exists($message, self::SUCCESS_MESSAGES)) {
@@ -81,6 +86,12 @@ class ConvertToJsonService
     {
         http_response_code(400);
         return json_encode(self::INVALID_USER_ID_RESPONSE);
+    }
+
+    public static function invalidTaskIdResponse(): string
+    {
+        http_response_code(400);
+        return json_encode(self::INVALID_TASK_ID_RESPONSE);
     }
 }
 

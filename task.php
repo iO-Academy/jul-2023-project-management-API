@@ -3,6 +3,19 @@ header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
 require 'vendor/autoload.php';
 
-$db = \ProjectManager\Services\DbConnector::connect();
-$data = \ProjectManager\Hydrators\TasksHydrator::getTaskByUserAndProjectId($db, $_GET['id']);
-echo \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
+try {
+    $db = \ProjectManager\Services\DbConnector::connect();
+    if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
+        try {
+            $data = \ProjectManager\Hydrators\TasksHydrator::getTaskByUserAndProjectId($db, $_GET['id']);
+            $jsonData =  \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
+        } catch (Throwable $e) {
+            $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();
+        }
+    } else {
+        $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();
+    }
+    echo $jsonData;
+} catch (Exception $e) {
+    echo \ProjectManager\Services\ConvertToJsonService::unexpectedErrorResponse();
+}
