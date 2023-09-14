@@ -17,11 +17,6 @@ class ConvertToJsonServiceTest extends TestCase
         $this->assertSame(200, http_response_code());
     }
 
-    public function testConvert_success_unexpected_error()
-    {
-        $this->markTestSkipped('Skipping due to integration test required');
-    }
-
     public function testUnexpectedErrorResponse_success()
     {
         $result = \ProjectManager\Services\ConvertToJsonService::UnexpectedErrorResponse();
@@ -29,7 +24,10 @@ class ConvertToJsonServiceTest extends TestCase
         $this->assertSame($expected, $result);
         $this->assertSame(500, http_response_code());
     }
-
+    public function testConvert_success_unexpected_error()
+    {
+        $this->markTestSkipped('Skipping due to integration test required');
+    }
     public function testConvert_failure()
     {
         $this->expectException(Exception::class);
@@ -46,5 +44,13 @@ class ConvertToJsonServiceTest extends TestCase
     {
         $this->expectException(TypeError::class);
         \ProjectManager\Services\ConvertToJsonService::convert([], '');
+    }
+
+    public function testInvalidProjectIdResponse_success()
+    {
+        $result = ConvertToJsonService::invalidProjectIdResponse();
+        $expected = '{"message":"Invalid project ID","data":[]}';
+        $this->assertSame($expected, $result);
+        $this->assertSame(400, http_response_code());
     }
 }
