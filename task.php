@@ -6,10 +6,10 @@ require 'vendor/autoload.php';
 try {
     $db = \ProjectManager\Services\DbConnector::connect();
     if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
-        try {
-            $data = \ProjectManager\Hydrators\TasksHydrator::getTaskByTaskId($db, $_GET['id']);
+        $data = \ProjectManager\Hydrators\TasksHydrator::getTaskByTaskId($db, $_GET['id']);
+        if ($data) {
             $jsonData =  \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
-        } catch (Throwable $e) {
+        } else {
             $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();
         }
     } else {
