@@ -15,7 +15,7 @@ class TasksHydrator
         return $query->fetchAll();
     }
 
-    public static function getTaskByUserAndProjectId(\PDO $db, int $taskId)
+    public static function getTaskByTaskId(\PDO $db, int $taskId)
     {
         $query = $db->prepare('SELECT `id`, `project_id`, `user_id`, `name`, `description`, `estimate`, `deadline` FROM `tasks` WHERE `id` = ?');
         $query->execute([$taskId]);

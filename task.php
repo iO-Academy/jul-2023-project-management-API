@@ -7,8 +7,8 @@ try {
     $db = \ProjectManager\Services\DbConnector::connect();
     if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
         try {
-            $data = \ProjectManager\Hydrators\TasksHydrator::getTaskByUserAndProjectId($db, $_GET['id']);
-            $jsonData =  \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::PROJECT_SUCCESS_MESSAGE);
+            $data = \ProjectManager\Hydrators\TasksHydrator::getTaskByTaskId($db, $_GET['id']);
+            $jsonData =  \ProjectManager\Services\ConvertToJsonService::convert($data, \ProjectManager\Services\ConvertToJsonService::TASK_SUCCESS_MESSAGE);
         } catch (Throwable $e) {
             $jsonData = \ProjectManager\Services\ConvertToJsonService::invalidTaskIdResponse();
         }
