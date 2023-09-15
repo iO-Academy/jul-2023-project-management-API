@@ -13,10 +13,13 @@ class ConvertToJsonService
 
     public const TASKS_SUCCESS_MESSAGE = 2;
 
+    public const TASK_SUCCESS_MESSAGE = 3;
+
     private const SUCCESS_MESSAGES = [
         self::PROJECTS_SUCCESS_MESSAGE => 'Successfully retrieved projects',
         self::PROJECT_SUCCESS_MESSAGE => 'Successfully retrieved project',
         self::TASKS_SUCCESS_MESSAGE => 'Successfully retrieved tasks',
+        self::TASK_SUCCESS_MESSAGE => 'Successfully retrieved task'
     ];
 
     private const UNEXPECTED_ERROR_RESPONSE = [
@@ -36,6 +39,11 @@ class ConvertToJsonService
 
     private const NO_TASK_ASSIGNED_TO_USER = [
         "message" => "No tasks assigned to that user for this project",
+        "data" => []
+    ];
+
+    public const INVALID_TASK_ID_RESPONSE = [
+        "message" => "Invalid task ID",
         "data" => []
     ];
 
@@ -78,6 +86,12 @@ class ConvertToJsonService
     {
         http_response_code(400);
         return json_encode(self::INVALID_USER_ID_RESPONSE);
+    }
+
+    public static function invalidTaskIdResponse(): string
+    {
+        http_response_code(400);
+        return json_encode(self::INVALID_TASK_ID_RESPONSE);
     }
 }
 
